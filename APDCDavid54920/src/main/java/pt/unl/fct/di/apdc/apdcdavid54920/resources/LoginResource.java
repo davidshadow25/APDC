@@ -66,7 +66,7 @@ public class LoginResource {
 	public Response doLoginLocal(LoginData data) {
 		LOG.fine("Login attempt by user: " + data.username);
 		
-		if(data.username.equals("bootstrapUser") && DigestUtils.sha512Hex(data.password).equals(DigestUtils.sha512Hex("Davidshadow"))) {
+		if(data.username.equals("Administrador") && DigestUtils.sha512Hex(data.password).equals(DigestUtils.sha512Hex("Davidshadow"))) {
 			AuthToken token = new AuthToken(data.username);
 			LOG.info("User '" + data.username + "' logged in successfully");
 			return Response.ok(g.toJson(token)).build();
