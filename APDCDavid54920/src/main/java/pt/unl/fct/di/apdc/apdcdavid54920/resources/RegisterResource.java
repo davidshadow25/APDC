@@ -98,7 +98,8 @@ public class RegisterResource {
 				.setKind("Token").newKey(token.tokenID);
 		Entity tkn = datastore.get(tokenKey);
 		
-		if(Timestamp.now().getSeconds() < token.expirationDate && tkn != null && user.getString("ROLE").equals("USER")) {
+		if(Timestamp.now().getSeconds() < token.expirationDate && tkn != null 
+		&& (user.getString("ROLE").equals("USER") || (user.getString("ROLE").equals("GBO") || (user.getString("ROLE").equals("GA"))))) {
 			if(token.role.equals("USER") && username.equals(userKey.getNameOrId())) {
 				datastore.delete(userKey, tokenKey);
 				LOG.info("User " + username + " was deleted with success");
